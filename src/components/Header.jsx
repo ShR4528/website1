@@ -4,10 +4,19 @@ import Wrapper from './Wrapper';
 import nem from '../assets/nem.jpg';
 
 const Header = () => {
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showCatMenu, setShowCatMenu] = useState(false);
   const [show, setShow] = useState('translate-y-0');
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const handleMouseEnter = () => {
+    setDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setDropdownOpen(false);
+  };
 
   return (
     <nav
@@ -25,10 +34,32 @@ const Header = () => {
           </a>
         </div>
       </div>
-      <div className='mx-auto px-4 sm:px-6 lg:px-8'>
+      {/* <div className='mx-auto px-4 sm:px-6 lg:px-8 '> */}
+      <div
+        className={`dropdown ${
+          isDropdownOpen ? 'open' : ''
+        } mx-auto px-4 sm:px-6 lg:px-8`}>
         <div className='flex justify-between h-16'>
           <div className='flex font-style:italic'>
             <div className='hidden sm:flex sm:items-center sm:ml-100'>
+              <ul>
+                <li>
+                  <a href='/'>Home</a>
+                </li>
+                <li
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}>
+                  <a href='/'>Dropdown</a>
+                  {isDropdownOpen && (
+                    <div className='dropdown-content'>
+                      {/* Всплывающее окно */}
+                      <a href='/'>Link 1</a>
+                      <a href='/'>Link 2</a>
+                      <a href='/'>Link 3</a>
+                    </div>
+                  )}
+                </li>
+              </ul>
               <a
                 href='#'
                 className='text-black hover:text-white  px-3 py-2 rounded-md text-sm font-medium'>

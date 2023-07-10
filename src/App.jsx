@@ -1,9 +1,15 @@
 import Header from './components/Header';
+import Main from './components/Main';
 import './index.css';
 //import './App.css';
 
 const App = () => {
-  return <Header />;
+  return (
+    <>
+      <Header />
+      <Main />
+    </>
+  );
 };
 
 export default App;
